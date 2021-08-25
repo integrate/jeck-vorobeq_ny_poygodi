@@ -6,12 +6,12 @@ wrap.world.set_back_image("pytrwqHL/нет.jpg")
 
 # солдаты
 coldats = []
-coldat = wrap.sprite.add("coldat", 755, 1050)
-wrap.sprite.set_angle(coldat, 28)
-coldats.append(coldat)
+
 
 score = 100
 take = False
+
+
 place_gun = wrap.sprite.add("DECORATORS", 1120, 710, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 945, 234, "place_gun")
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
@@ -60,8 +60,9 @@ def mouse(pos_x, pos_y):
 
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
-def install():
+def install(keys,pos_x,pos_y):
     global take
+
     one = wrap.sprite.is_collide_sprite(gun, place_gun)
     if take and one:
         pos1place = wrap.sprite.get_pos(place_gun)
@@ -77,6 +78,14 @@ def install():
         wrap.sprite.show(gun_war2)
         wrap.sprite.move_to(gun_war2, pos2place[0], pos2place[1])
         take = False
+    two=wrap.sprite.is_collide_point(gun_war2,pos_x,pos_y)
+    if wrap.K_q in keys and two :
+        wrap.sprite.hide(gun_war2)
+        wrap.sprite.move_to(gun_war2,500,110)
+    one = wrap.sprite.is_collide_point(gun_war1, pos_x, pos_y)
+    if wrap.K_q in keys and one:
+        wrap.sprite.hide(gun_war1)
+        wrap.sprite.move_to(gun_war1, 500, 110)
 
 
 @wrap.always(5000)
@@ -104,3 +113,7 @@ def move():
             wrap.sprite_text.set_text(scorecastle, str(score))
             wrap.sprite.remove(a)
             coldats.remove(a)
+    if len(coldats) >= 1:
+        soldat = coldats[0]
+        pos_coldats=wrap.sprite.get_pos(soldat)
+        wrap.sprite.set_angle_to_point(gun,pos_coldats[0],pos_coldats[1])
