@@ -7,12 +7,14 @@ wrap.world.set_back_image("pytrwqHL/нет.jpg")
 # солдаты
 coldats = []
 
-score = 100
+score = 2
 take = False
 
+radius_war_1 = wrap.sprite.add("DECORATORS", 960, 840, "radius", False)
+radius_war_2 = wrap.sprite.add("DECORATORS", 985, 274, "radius", False)
 radius = wrap.sprite.add("DECORATORS", 345, 123, "radius", False)
-place_gun = wrap.sprite.add("DECORATORS", 1060, 840, "place_gun")
-place_gun2 = wrap.sprite.add("DECORATORS", 945, 234, "place_gun")
+place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
+place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
 gun = wrap.sprite.add("gun", 500, 110)
 wrap.sprite.set_angle(gun, 139)
@@ -119,11 +121,19 @@ def move():
         castlecollide = wrap.sprite.is_collide_sprite(a, castle)
         if castlecollide:
             score -= 1
+            if score <= 0:
+                game = wrap.sprite.add_text(str("WASTED"), 900, 400, text_color=[255, 207, 0], font_size=400)
+                exit()
             wrap.sprite_text.set_text(scorecastle, str(score))
             wrap.sprite.remove(a)
             coldats.remove(a)
-    if len(coldats) >= 1:
-        soldat = coldats[0]
-        pos_coldats = wrap.sprite.get_pos(soldat)
-        wrap.sprite.set_angle_to_point(gun_war1, pos_coldats[0], pos_coldats[1])
-        wrap.sprite.set_angle_to_point(gun_war2, pos_coldats[0], pos_coldats[1])
+
+    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, coldats)
+    if radius_true != None:
+        pos_coldat = wrap.sprite.get_pos(radius_true)
+        wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
+
+    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, coldats)
+    if radius_true != None:
+        pos_coldat = wrap.sprite.get_pos(radius_true)
+        wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
