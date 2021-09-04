@@ -7,9 +7,10 @@ wrap.world.set_back_image("pytrwqHL/нет.jpg")
 # солдаты
 coldats = []
 
-score = 2
+score = 100
 take = False
 
+green_bar = wrap.sprite.add("DECORATORS", 500, 123, "green_bar")
 radius_war_1 = wrap.sprite.add("DECORATORS", 960, 840, "radius", False)
 radius_war_2 = wrap.sprite.add("DECORATORS", 985, 274, "radius", False)
 radius = wrap.sprite.add("DECORATORS", 345, 123, "radius", False)
@@ -137,3 +138,15 @@ def move():
     if radius_true != None:
         pos_coldat = wrap.sprite.get_pos(radius_true)
         wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
+
+
+a=[]
+b={"name":"boris","age":21,"age2":2000}
+a.append(b)
+b={"name":"boris","age":22,"age2":2000}
+a.append(b)
+b={"name":"boris","age":23,"age2":2000}
+a.append(b)
+print(b["name"])
+
+a[1]["name"]="nikali"
