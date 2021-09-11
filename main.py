@@ -10,7 +10,7 @@ coldats = []
 score = 100
 take = False
 
-green_bar = wrap.sprite.add("DECORATORS", 500, 123, "green_bar")
+green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
 radius_war_1 = wrap.sprite.add("DECORATORS", 960, 840, "radius", False)
 radius_war_2 = wrap.sprite.add("DECORATORS", 985, 274, "radius", False)
 radius = wrap.sprite.add("DECORATORS", 345, 123, "radius", False)
@@ -102,51 +102,65 @@ def install(keys, pos_x, pos_y):
 
 @wrap.always(5000)
 def coldatss():
+    global green_bar
     coldat = wrap.sprite.add("coldat", 755, 1050)
+    green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
     wrap.sprite.set_angle(coldat, 28)
-    coldats.append(coldat)
+    c = {"id": coldat, "hp_bar": green_bar}
+    coldats.append(c)
 
 
 @wrap.always(40)
 def move():
     global scorecastle, score
     for a in coldats:
-        wrap.sprite.move_at_angle_dir(a, 5)
-        point = wrap.sprite.is_collide_point(a, 1002, 502)
+        wrap.sprite.move_at_angle_dir(a["id"], 5)
+        point = wrap.sprite.is_collide_point(a["id"], 1002, 502)
         if point:
-            wrap.sprite.set_angle(a, 40)
-        point = wrap.sprite.is_collide_point(a, 1102, 335)
+            wrap.sprite.set_angle(a["id"], 40)
+        point = wrap.sprite.is_collide_point(a["id"], 1102, 335)
         if point:
-            wrap.sprite.set_angle(a, 0)
-
-        castlecollide = wrap.sprite.is_collide_sprite(a, castle)
+            wrap.sprite.set_angle(a["id"], 0)
+        xcoldat=wrap.sprite.get_x(a["id"])
+        ycoldat = wrap.sprite.get_top(a["id"])
+        wrap.sprite.move_to(a["hp_bar"],xcoldat,ycoldat)
+        castlecollide = wrap.sprite.is_collide_sprite(a["id"], castle)
         if castlecollide:
             score -= 1
             if score <= 0:
                 game = wrap.sprite.add_text(str("WASTED"), 900, 400, text_color=[255, 207, 0], font_size=400)
                 exit()
             wrap.sprite_text.set_text(scorecastle, str(score))
-            wrap.sprite.remove(a)
+            wrap.sprite.remove(a["id"])
+            wrap.sprite.remove(a["hp_bar"])
             coldats.remove(a)
 
-    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, coldats)
-    if radius_true != None:
-        pos_coldat = wrap.sprite.get_pos(radius_true)
-        wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
+    # radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, coldats)
+    # if radius_true != None:
+    #     pos_coldat = wrap.sprite.get_pos(radius_true)
+    #     wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
+    #
+    # radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, coldats)
+    # if radius_true != None:
+    #     pos_coldat = wrap.sprite.get_pos(radius_true)
+    #     wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
 
-    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, coldats)
-    if radius_true != None:
-        pos_coldat = wrap.sprite.get_pos(radius_true)
-        wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
 
+a = []
+b = {"name": "boris", "age": 21, "age2": 2000}
+a.append(b)
+b = {"name": "boris", "age": 22, "age2": 2000}
+a.append(b)
+b = {"name": "boris", "age": 23, "age2": 2000}
+a.append(b)
 
-a=[]
-b={"name":"boris","age":21,"age2":2000}
-a.append(b)
-b={"name":"boris","age":22,"age2":2000}
-a.append(b)
-b={"name":"boris","age":23,"age2":2000}
-a.append(b)
 print(b["name"])
+c = 7
+c += 1
 
-a[1]["name"]="nikali"
+for q in a:
+    q["age2"] = 2000 - q["age"]
+
+for c in a:
+    print(c["age"])
+    c["age"] += 1
