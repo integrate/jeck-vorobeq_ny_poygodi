@@ -9,7 +9,7 @@ coldats = []
 
 score = 100
 take = False
-
+red_bar = wrap.sprite.add("DECORATORS",755,1050,"red_bar")
 green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
 radius_war_1 = wrap.sprite.add("DECORATORS", 960, 840, "radius", False)
 radius_war_2 = wrap.sprite.add("DECORATORS", 985, 274, "radius", False)
@@ -104,6 +104,7 @@ def install(keys, pos_x, pos_y):
 def coldatss():
     global green_bar
     coldat = wrap.sprite.add("coldat", 755, 1050)
+    red_bar = wrap.sprite.add("DECORATORS",755,1050,"red_bar")
     green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
     wrap.sprite.set_angle(coldat, 28)
     c = {"id": coldat, "hp_bar": green_bar}
@@ -121,9 +122,9 @@ def move():
         point = wrap.sprite.is_collide_point(a["id"], 1102, 335)
         if point:
             wrap.sprite.set_angle(a["id"], 0)
-        xcoldat=wrap.sprite.get_x(a["id"])
+        xcoldat = wrap.sprite.get_x(a["id"])
         ycoldat = wrap.sprite.get_top(a["id"])
-        wrap.sprite.move_to(a["hp_bar"],xcoldat,ycoldat)
+        wrap.sprite.move_to(a["hp_bar"], xcoldat, ycoldat)
         castlecollide = wrap.sprite.is_collide_sprite(a["id"], castle)
         if castlecollide:
             score -= 1
@@ -135,15 +136,18 @@ def move():
             wrap.sprite.remove(a["hp_bar"])
             coldats.remove(a)
 
-    # radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, coldats)
-    # if radius_true != None:
-    #     pos_coldat = wrap.sprite.get_pos(radius_true)
-    #     wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
-    #
-    # radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, coldats)
-    # if radius_true != None:
-    #     pos_coldat = wrap.sprite.get_pos(radius_true)
-    #     wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
+    b = []
+    for s in coldats:
+        b.append(s["id"])
+    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, b)
+    if radius_true != None:
+        pos_coldat = wrap.sprite.get_pos(radius_true)
+        wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
+
+    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, b)
+    if radius_true != None:
+        pos_coldat = wrap.sprite.get_pos(radius_true)
+        wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
 
 
 a = []
@@ -164,3 +168,7 @@ for q in a:
 for c in a:
     print(c["age"])
     c["age"] += 1
+del b
+c = []
+for s in a:
+    c.append(s["name"])
