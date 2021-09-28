@@ -128,21 +128,15 @@ def move():
                 exit()
             wrap.sprite_text.set_text(scorecastle, str(score))
             mod_coldats.remove(a)
-            mod_coldats.remove(a)
             coldats.remove(a)
 
     b = []
     for s in coldats:
         b.append(s["id"])
-    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_1, b)
-    if radius_true != None:
-        pos_coldat = wrap.sprite.get_pos(radius_true)
-        wrap.sprite.set_angle_to_point(gun_war1, pos_coldat[0], pos_coldat[1])
+    guns.set_angle_gun(radius_war_1,gun_war1,b)
 
-    radius_true = wrap.sprite.is_collide_any_sprite(radius_war_2, b)
-    if radius_true != None:
-        pos_coldat = wrap.sprite.get_pos(radius_true)
-        wrap.sprite.set_angle_to_point(gun_war2, pos_coldat[0], pos_coldat[1])
+    guns.set_angle_gun(radius_war_2,gun_war2,b)
+
 
 
 a = []

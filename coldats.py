@@ -3,5 +3,9 @@ import wrap
 
 
 def remove(coldat):
-    remove(coldat["id"])
-    remove(coldat["hp_bar"])
+
+    wrap.sprite.remove(coldat["id"])
+    wrap.sprite.remove(coldat["hp_bar"])
+
+
+
