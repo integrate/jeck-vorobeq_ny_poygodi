@@ -1,4 +1,4 @@
-import wrap, guns,coldats as mod_coldats
+import wrap, guns, coldats as mod_coldats
 
 wrap.add_sprite_dir("sprites")
 wrap.world.create_world(1930, 1000)
@@ -9,8 +9,8 @@ coldats = []
 
 score = 100
 take = False
-red_bar = wrap.sprite.add("DECORATORS", 755, 1050, "red_bar")
-green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
+
+
 
 place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
@@ -97,16 +97,12 @@ def install(keys, pos_x, pos_y):
 
 @wrap.always(5000)
 def coldatss():
-    global green_bar
-    coldat = wrap.sprite.add("coldat", 755, 1050)
-    red_bar = wrap.sprite.add("DECORATORS", 755, 1050, "red_bar")
-    green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
-    wrap.sprite.set_angle(coldat, 28)
-    c = {"id": coldat, "hp_bar": green_bar}
+    c = mod_coldats.add_coldat()
     coldats.append(c)
+    mod_coldats.move_angle_dir(c,300)
 
 
-@wrap.always(40)
+#@wrap.always(40)
 def move():
     global scorecastle, score
     for a in coldats:
@@ -133,31 +129,6 @@ def move():
     b = []
     for s in coldats:
         b.append(s["id"])
-    guns.set_angle_gun(radius_war_1,gun_war1,b)
+    guns.set_angle_gun(radius_war_1, gun_war1, b)
 
-    guns.set_angle_gun(radius_war_2,gun_war2,b)
-
-
-
-a = []
-b = {"name": "boris", "age": 21, "age2": 2000}
-a.append(b)
-b = {"name": "boris", "age": 22, "age2": 2000}
-a.append(b)
-b = {"name": "boris", "age": 23, "age2": 2000}
-a.append(b)
-
-print(b["name"])
-c = 7
-c += 1
-
-for q in a:
-    q["age2"] = 2000 - q["age"]
-
-for c in a:
-    print(c["age"])
-    c["age"] += 1
-del b
-c = []
-for s in a:
-    c.append(s["name"])
+    guns.set_angle_gun(radius_war_2, gun_war2, b)
