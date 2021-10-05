@@ -99,23 +99,22 @@ def install(keys, pos_x, pos_y):
 def coldatss():
     c = mod_coldats.add_coldat()
     coldats.append(c)
-    mod_coldats.move_angle_dir(c,300)
 
 
-#@wrap.always(40)
+
+@wrap.always(40)
 def move():
     global scorecastle, score
     for a in coldats:
-        wrap.sprite.move_at_angle_dir(a["id"], 5)
+        mod_coldats.move_angle_dir(a,5)
+
         point = wrap.sprite.is_collide_point(a["id"], 1002, 502)
         if point:
             wrap.sprite.set_angle(a["id"], 40)
         point = wrap.sprite.is_collide_point(a["id"], 1102, 335)
         if point:
             wrap.sprite.set_angle(a["id"], 0)
-        xcoldat = wrap.sprite.get_x(a["id"])
-        ycoldat = wrap.sprite.get_top(a["id"])
-        wrap.sprite.move_to(a["hp_bar"], xcoldat, ycoldat)
+
         castlecollide = wrap.sprite.is_collide_sprite(a["id"], castle)
         if castlecollide:
             score -= 1
