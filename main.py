@@ -83,6 +83,8 @@ def install(keys, pos_x, pos_y):
         guns.move_gun(gun_war2, radius_war_2, pos2place[0], pos2place[1])
         take = False
 
+
+
     # возращение раб.пушки в магазин
     two = wrap.sprite.is_collide_point(gun_war2, pos_x, pos_y)
     if wrap.K_q in keys and two:
@@ -131,3 +133,7 @@ def move():
     guns.set_angle_gun(radius_war_1, gun_war1, b)
 
     guns.set_angle_gun(radius_war_2, gun_war2, b)
+
+
+def atacka():
+    wrap.sprite.is_collide_sprite(radius_war_1,coldats)
