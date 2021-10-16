@@ -130,10 +130,6 @@ def move():
     b = []
     for s in coldats:
         b.append(s["id"])
-    guns.set_angle_gun(radius_war_1, gun_war1, b)
+    guns.set_angle_gun(radius_war_1, gun_war1, b,coldats)
 
-    guns.set_angle_gun(radius_war_2, gun_war2, b)
-
-
-def atacka():
-    wrap.sprite.is_collide_sprite(radius_war_1,coldats)
+    guns.set_angle_gun(radius_war_2, gun_war2, b,coldats)
