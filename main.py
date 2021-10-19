@@ -130,6 +130,6 @@ def move():
     b = []
     for s in coldats:
         b.append(s["id"])
-    guns.set_angle_gun(radius_war_1, gun_war1, b,coldats)
+    guns.set_angle_gun(radius_war_1, gun_war1,coldats)
 
-    guns.set_angle_gun(radius_war_2, gun_war2, b,coldats)
+    guns.set_angle_gun(radius_war_2, gun_war2,coldats)

@@ -23,10 +23,15 @@ def move_gun(gun_id, radius_id, pos_x, pos_y):
     wrap.sprite.move_to(radius_id, pos_x, pos_y)
 
 
-def set_angle_gun(radius_war, gun_war, list_coldats_id,dict_coldats):
-    radius_true = wrap.sprite.is_collide_any_sprite(radius_war, list_coldats_id)
-    if radius_true != None:
-        pos_coldat = wrap.sprite.get_pos(radius_true)
-        wrap.sprite.set_angle_to_point(gun_war, pos_coldat[0], pos_coldat[1])
-        for s in dict_coldats:
+def set_angle_gun(radius_war, gun_war,dict_coldats):
+    b = []
+    for s in dict_coldats:
+        b.append(s["id"])
+    coldat_id = wrap.sprite.is_collide_any_sprite(radius_war, b)
+    if coldat_id == None:
+        return
+    pos_coldat = wrap.sprite.get_pos(coldat_id)
+    wrap.sprite.set_angle_to_point(gun_war, pos_coldat[0], pos_coldat[1])
+    for s in dict_coldats:
+        if s["id"] == coldat_id:
             mod_coldats.kick(s)
