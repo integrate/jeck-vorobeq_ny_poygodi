@@ -17,8 +17,8 @@ place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
 gun, radius = guns.add_gun(120, 20, 145, True)
 
-gun_war1, radius_war_1 = guns.add_gun(960, 840, 213, False)
-gun_war2, radius_war_2 = guns.add_gun(985, 274, 213, False)
+gun_war1, radius_war_1 = guns.add_gun(96, 0, 213, False)
+gun_war2, radius_war_2 = guns.add_gun(98, 1, 213, False)
 
 scorecastle = wrap.sprite.add_text(str(score), 50, 20, text_color=[255, 207, 0], font_size=40)
 
@@ -97,7 +97,7 @@ def install(keys, pos_x, pos_y):
         guns.move_gun(gun_war1, radius_war_1, 500, 110)
 
 
-@wrap.always(5000)
+@wrap.always(2000)
 def coldatss():
     c = mod_coldats.add_coldat()
     coldats.append(c)
@@ -108,6 +108,10 @@ def coldatss():
 def move():
     global scorecastle, score
     for a in coldats:
+        if a["hp"]<= 0:
+            mod_coldats.remove(a)
+            coldats.remove(a)
+            continue
         mod_coldats.move_angle_dir(a,5)
 
         point = wrap.sprite.is_collide_point(a["id"], 1002, 502)
@@ -126,6 +130,7 @@ def move():
             wrap.sprite_text.set_text(scorecastle, str(score))
             mod_coldats.remove(a)
             coldats.remove(a)
+
 
     b = []
     for s in coldats:

@@ -35,3 +35,5 @@ def move_angle_dir(dict_coldat, distance):
 def kick(dict_coldat):
     dict_coldat["hp"]-=1
     wrap.sprite.set_width(dict_coldat["hp_bar"], dict_coldat["hp"])
+
+
