@@ -11,7 +11,9 @@ score = 100
 take = False
 
 
-
+row=[]
+row.append({"time":1900 ,"who":"coldat"})
+row.append({"time":6000 ,"who":"pacman"})
 place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
@@ -97,11 +99,11 @@ def install(keys, pos_x, pos_y):
         guns.move_gun(gun_war1, radius_war_1, 500, 110)
 
 
-@wrap.always(2000)
+@wrap.always()
 def coldatss():
     c = mod_coldats.add_coldat()
     coldats.append(c)
-
+    print(len(coldats)*100)
 
 
 @wrap.always(40)
