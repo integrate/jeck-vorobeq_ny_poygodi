@@ -1,4 +1,4 @@
-import wrap, guns, coldats as mod_coldats
+import wrap, guns, coldats as mod_coldats,time
 
 wrap.add_sprite_dir("sprites")
 wrap.world.create_world(1930, 1000)
@@ -14,6 +14,7 @@ take = False
 row=[]
 row.append({"time":1900 ,"who":"coldat"})
 row.append({"time":6000 ,"who":"pacman"})
+ime=time.time()
 place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
@@ -99,11 +100,15 @@ def install(keys, pos_x, pos_y):
         guns.move_gun(gun_war1, radius_war_1, 500, 110)
 
 
-@wrap.always()
+@wrap.always(1000)
 def coldatss():
-    c = mod_coldats.add_coldat()
-    coldats.append(c)
-    print(len(coldats)*100)
+    qtime=int((time.time()-ime)*1000)
+    for g in row:
+        if g["time"] <= qtime:
+            print(g)
+    # c = mod_coldats.add_coldat()
+    # coldats.append(c)
+
 
 
 @wrap.always(40)
