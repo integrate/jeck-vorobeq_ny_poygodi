@@ -12,8 +12,10 @@ take = False
 
 
 row=[]
-row.append({"time":1900 ,"who":"coldat"})
-row.append({"time":6000 ,"who":"pacman"})
+row.append({"time":1900 ,"hp":100})
+row.append({"time":6000 ,"hp":100})
+row.append({"time":190 ,"hp":50})
+row.append({"time":600 ,"hp":50})
 ime=time.time()
 place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
@@ -100,14 +102,15 @@ def install(keys, pos_x, pos_y):
         guns.move_gun(gun_war1, radius_war_1, 500, 110)
 
 
-@wrap.always(1000)
+@wrap.always(100)
 def coldatss():
     qtime=int((time.time()-ime)*1000)
     for g in row:
         if g["time"] <= qtime:
-            print(g)
-    # c = mod_coldats.add_coldat()
-    # coldats.append(c)
+            c = mod_coldats.add_coldat(g["hp"])
+            coldats.append(c)
+            row.remove(g)
+
 
 
 

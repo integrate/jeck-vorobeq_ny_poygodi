@@ -7,13 +7,13 @@ def remove(coldat):
     wrap.sprite.remove(coldat["red_bar"])
 
 
-def add_coldat():
+def add_coldat(hp=50):
     coldat = wrap.sprite.add("coldat", 755, 1050)
     red_bar = wrap.sprite.add("DECORATORS", 755, 1050, "red_bar")
     green_bar = wrap.sprite.add("DECORATORS", 755, 1050, "green_bar")
     wrap.sprite.set_angle(coldat, 28)
 
-    c = {"id": coldat, "hp_bar": green_bar, "red_bar": red_bar, "hp": 50}
+    c = {"id": coldat, "hp_bar": green_bar, "red_bar": red_bar, "hp": hp}
 
     return c
 
