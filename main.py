@@ -12,10 +12,10 @@ take = False
 
 
 row=[]
-row.append({"time":1900 ,"hp":100})
-row.append({"time":6000 ,"hp":100})
-row.append({"time":190 ,"hp":50})
-row.append({"time":600 ,"hp":50})
+row.append({"time":1900 ,"hp":100,"sprite":"mario-scenery","costum":"cloud2"})
+row.append({"time":6000 ,"hp":7000,"sprite":"mario-scenery","costum":"cloud2"})
+row.append({"time":190 ,"hp":50,"sprite":"mario-scenery","costum":"cloud2"})
+row.append({"time":600 ,"hp":50,"sprite":"mario-scenery","costum":"bush2"})
 ime=time.time()
 place_gun = wrap.sprite.add("DECORATORS", 960, 840, "place_gun")
 place_gun2 = wrap.sprite.add("DECORATORS", 985, 274, "place_gun")
@@ -107,7 +107,7 @@ def coldatss():
     qtime=int((time.time()-ime)*1000)
     for g in row:
         if g["time"] <= qtime:
-            c = mod_coldats.add_coldat(g["hp"])
+            c = mod_coldats.add_coldat(g["hp"],g["costum"],g["sprite"])
             coldats.append(c)
             row.remove(g)
 
