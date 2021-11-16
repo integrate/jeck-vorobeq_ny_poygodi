@@ -1,7 +1,8 @@
 import coldats
 
-def add_row(time,hp,sprite,costym):
-    t={"time":time ,"hp":hp,"sprite":sprite,"costum":costym}
+
+def add_row(time, hp, sprite, costym):
+    t = {"time": time, "hp": hp, "sprite": sprite, "costum": costym}
 
     return t
 
