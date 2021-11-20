@@ -1,4 +1,7 @@
-import wrap
+import wrap,guns
+
+
+
 
 
 
@@ -10,16 +13,22 @@ def create(x,y):
     return lol
 
 
+def mogu_postavit_gun(place,gun):
+    one = wrap.sprite.is_collide_sprite(gun, place["id"])
+
+    return one
 
 
+def premerka(gun,radius,place_gun):
+    pos1place = wrap.sprite.get_pos(place_gun["id"])
+    guns.move_gun(gun, radius, pos1place[0], pos1place[1])
+    wrap.sprite.show(radius)
 
 
+def place_gun_id(place_gun):
+    place_gun_id=place_gun["id"]
 
-
-
-
-
-
+    return place_gun_id
 
 
 
