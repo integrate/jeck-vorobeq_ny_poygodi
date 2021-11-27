@@ -61,11 +61,9 @@ def install(keys, pos_x, pos_y):
     global take
 
     if take and place.mogu_postavit_gun(place_gun, gun):
-        pos1place = wrap.sprite.get_pos(place_gun["id"])
+        place.install_gun_on_place(place_gun,gun_war1,radius_war_1)
         guns.move_gun(gun, radius, 500, 110)
         wrap.sprite.hide(radius)
-        wrap.sprite.show(gun_war1)
-        guns.move_gun(gun_war1, radius_war_1, pos1place[0], pos1place[1])
         take = False
 
     # возращение раб.пушки в магазин
