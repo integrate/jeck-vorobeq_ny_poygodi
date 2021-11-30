@@ -67,10 +67,6 @@ def install(keys, pos_x, pos_y):
         take = False
 
     # возращение раб.пушки в магазин
-    two = wrap.sprite.is_collide_point(gun_war2, pos_x, pos_y)
-    if wrap.K_q in keys and two:
-        wrap.sprite.hide(gun_war2)
-        guns.move_gun(gun_war2, radius_war_2, 500, 110)
 
     one = wrap.sprite.is_collide_point(gun_war1, pos_x, pos_y)
     if wrap.K_q in keys and one:
