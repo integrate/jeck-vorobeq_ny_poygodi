@@ -11,14 +11,25 @@ score = 100
 take = False
 
 row = []
-row.append(ochered.add_row(1900, 100, "mario-scenery", "cloud2"))
-row.append(ochered.add_row(6000, 70, "mario-scenery", "cloud2"))
-row.append(ochered.add_row(900, 50, "mario-scenery", "cloud2"))
-row.append(ochered.add_row(600, 50, "mario-scenery", "cloud2"))
+row.append(ochered.add_row(1900, 60, "coldat", "coldat"))
+row.append(ochered.add_row(6000, 200, "coldat", "tank"))
+row.append(ochered.add_row(900, 50, "coldat", "coldat"))
+row.append(ochered.add_row(600, 50, "coldat", "coldat"))
+
+row.append(ochered.add_row(11900, 60, "coldat", "coldat"))
+row.append(ochered.add_row(16000, 200, "coldat", "tank"))
+row.append(ochered.add_row(10900, 50, "coldat", "coldat"))
+row.append(ochered.add_row(10600, 50, "coldat", "coldat"))
+
+row.append(ochered.add_row(21900, 60, "coldat", "coldat"))
+row.append(ochered.add_row(26000, 200, "coldat", "tank"))
+row.append(ochered.add_row(20900, 50, "coldat", "coldat"))
+row.append(ochered.add_row(20600, 50, "coldat", "coldat"))
 ime = time.time()
 place_gun = place.create(950, 204)
+place_gun2 = place.create(1034, 675)
 castle = wrap.sprite.add("DECORATORS", 1125, 80)
-gun, radius = guns.add_gun(120, 20, 145, True)
+gun, radius = guns.add_gun(500, 110, 145, True)
 
 gun_war1, radius_war_1 = guns.add_gun(96, 0, 213, False)
 gun_war2, radius_war_2 = guns.add_gun(98, 1, 213, False)
@@ -54,6 +65,8 @@ def mouse(pos_x, pos_y):
 
         if place.mogu_postavit_gun(place_gun, gun):
             place.premerka(gun, radius, place_gun)
+        if place.mogu_postavit_gun(place_gun2, gun):
+            place.premerka(gun, radius, place_gun2)
 
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
@@ -61,17 +74,29 @@ def install(keys, pos_x, pos_y):
     global take
 
     if take and place.mogu_postavit_gun(place_gun, gun):
-        place.install_gun_on_place(place_gun,gun_war1,radius_war_1)
+        place.install_gun_on_place(place_gun, gun_war1, radius_war_1)
         guns.move_gun(gun, radius, 500, 110)
         wrap.sprite.hide(radius)
         take = False
 
+    if take and place.mogu_postavit_gun(place_gun2, gun):
+        place.install_gun_on_place(place_gun2, gun_war2, radius_war_2)
+        guns.move_gun(gun, radius, 500, 110)
+        wrap.sprite.hide(radius)
+        take = False
     # возращение раб.пушки в магазин
 
     one = wrap.sprite.is_collide_point(gun_war1, pos_x, pos_y)
     if wrap.K_q in keys and one:
+        place.delete_gun(place_gun)
+
         wrap.sprite.hide(gun_war1)
         guns.move_gun(gun_war1, radius_war_1, 500, 110)
+    one = wrap.sprite.is_collide_point(gun_war2, pos_x, pos_y)
+    if wrap.K_q in keys and one:
+        place.delete_gun(place_gun2)
+        wrap.sprite.hide(gun_war2)
+        guns.move_gun(gun_war2, radius_war_2, 500, 110)
 
 
 @wrap.always(100)
