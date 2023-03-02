@@ -7,7 +7,7 @@ wrap.world.set_back_image("pytrwqHL/нет.jpg")
 # солдаты
 coldats = []
 
-score = 1
+score = 100
 take = False
 
 row = []
